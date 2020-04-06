@@ -12,6 +12,6 @@ target 'HXHSwiftKit' do
   pod 'YYKit'
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'IQKeyboardManager', '~> 6.1' #键盘
-
+  pod 'ObjectMapper', '~> 3.5'
   
 end

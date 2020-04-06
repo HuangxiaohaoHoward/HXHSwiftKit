@@ -14,5 +14,5 @@ import UIKit
 extension UIViewController: HXHNameSpaceCompatible{}
 
 extension HXHNameSpace where Base: UIViewController {
-    
+
 }

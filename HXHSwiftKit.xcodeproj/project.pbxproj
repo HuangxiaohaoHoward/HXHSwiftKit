@@ -16,6 +16,7 @@
 		A6572C602434C0AF002ED22C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6572C5F2434C0AF002ED22C /* AppDelegate.swift */; };
 		A6572C692434C0B3002ED22C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6572C682434C0B3002ED22C /* Assets.xcassets */; };
 		A6572C6C2434C0B3002ED22C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6572C6A2434C0B3002ED22C /* LaunchScreen.storyboard */; };
+		A6F63D092438784100E7BB45 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F63D082438784100E7BB45 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		A6572C682434C0B3002ED22C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6572C6B2434C0B3002ED22C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6572C6D2434C0B3002ED22C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6F63D082438784100E7BB45 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		BD6531C6344D006C5A4D4EFC /* Pods-HXHSwiftKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HXHSwiftKit.debug.xcconfig"; path = "Target Support Files/Pods-HXHSwiftKit/Pods-HXHSwiftKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +155,7 @@
 				58C4405924358A4800AF5649 /* Modules */,
 				58C4405524357CD500AF5649 /* Utils */,
 				A6572C5F2434C0AF002ED22C /* AppDelegate.swift */,
+				A6F63D082438784100E7BB45 /* File.swift */,
 				A6572C682434C0B3002ED22C /* Assets.xcassets */,
 				A6572C6A2434C0B3002ED22C /* LaunchScreen.storyboard */,
 				A6572C6D2434C0B3002ED22C /* Info.plist */,
@@ -285,6 +288,7 @@
 			files = (
 				58C440622435D98600AF5649 /* HXHNameSpace.swift in Sources */,
 				58C4406824370EF700AF5649 /* FrameManager.swift in Sources */,
+				A6F63D092438784100E7BB45 /* File.swift in Sources */,
 				58C4405D24358AD000AF5649 /* HXHBaseViewController.swift in Sources */,
 				58C440652436D6A100AF5649 /* UIButton+HXHAdd.swift in Sources */,
 				A6572C602434C0AF002ED22C /* AppDelegate.swift in Sources */,

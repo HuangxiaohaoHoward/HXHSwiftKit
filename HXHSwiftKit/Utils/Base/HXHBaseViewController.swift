@@ -15,6 +15,15 @@ import SnapKit
 
 
 class HXHBaseViewController: UIViewController {
+    enum NaviType {
+        case hideNavi
+        case normal
+    }
+    var naviType = NaviType.hideNavi {
+        didSet{
+            setupNaviAndStatus()
+        }
+    }
     
     /// 简单文字提示
     lazy var hud: MBProgressHUD = {
@@ -27,6 +36,14 @@ class HXHBaseViewController: UIViewController {
     
     /// 标题label
     lazy var customTitleLabel = UILabel()
+//MARK: init
+    init(naviType: NaviType = .hideNavi) {
+        self.naviType = naviType
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +88,36 @@ extension HXHBaseViewController {
             
         }
     }
+    func setupNaviAndStatus() {
+        navigationController?.navigationBar.isTranslucent = false
+        UIApplication.shared.setStatusBarHidden(false, with: .fade)
+        switch naviType {
+        case .hideNavi:
+            navigationController?.setNavigationBarHidden(false, animated: false)
+
+            
+        default:
+            navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        setupStatusBarDefault()
+    }
+    func setupStatusBarLight() {
+        navigationController?.navigationBar.barStyle = .black;
+        UIApplication.shared.statusBarStyle = .lightContent;
+        perform(#selector(setNeedsStatusBarAppearanceUpdate))
+    }
+    
+    func setupStatusBarDefault() -> Void {
+        navigationController?.navigationBar.barStyle = .default
+        
+        if #available(iOS 13.0, *) {
+            UIApplication.shared.statusBarStyle = .darkContent
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+        }
+        perform(#selector(setNeedsStatusBarAppearanceUpdate))
+
+    }
 }
 //MARK: - view层的常用方法
 extension HXHBaseViewController {
@@ -107,6 +154,7 @@ extension HXHBaseViewController {
             naviView.addSubview(leftBtn)
             leftBtn.frame = CGRect(x: 12.0, y: StatusBarHeight, width: leftBtn.intrinsicContentSize.width, height: 44)
         } else {
+           
             
         }
         

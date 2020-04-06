@@ -17,7 +17,7 @@ extension HXHNameSpace where Base: UIButton {
         guard let imgView = base.imageView else { return }
         guard let titlelabel = base.titleLabel else { return }
         let labelWidth = titlelabel.intrinsicContentSize.width
-        let imgWidth = imgView.intrinsicContentSize.width
+        let imgWidth = imgView.frame.size.width
         base.setNeedsLayout()
         base.layoutIfNeeded()
         base.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imgWidth - space/2.0, bottom: 0, right: imgWidth+space/2.0)
@@ -29,3 +29,8 @@ extension HXHNameSpace where Base: UIButton {
     }
 }
     
+extension UIButton {
+    func testwwwwww() {
+        
+    }
+}
