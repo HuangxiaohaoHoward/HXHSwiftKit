@@ -21,7 +21,7 @@ class HXHBaseViewController: UIViewController {
     }
     var naviType = NaviType.hideNavi {
         didSet{
-            setupNaviAndStatus()
+            setupBaseNaviAndStatus()
         }
     }
     
@@ -36,7 +36,7 @@ class HXHBaseViewController: UIViewController {
     
     /// 标题label
     lazy var customTitleLabel = UILabel()
-//MARK: init
+    //MARK: - 构造方法 init
     init(naviType: NaviType = .hideNavi) {
         self.naviType = naviType
         super.init(nibName: nil, bundle: nil)
@@ -44,38 +44,17 @@ class HXHBaseViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    //MARK: - 声明周期
     override func viewDidLoad() {
         super.viewDidLoad()
         config()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setupBaseNaviAndStatus()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.mode = MBProgressHUDMode.text
-        hud.detailsLabel.text = "detailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabeldetailsLabel"
-        hud.hide(animated: true, afterDelay: 3)
-        
-        
-        let btn: UIButton = UIButton(frame: CGRect(x: 100, y: 300, width: 20, height: 60))
-        view.addSubview(btn)
-        btn.addTarget(self, action: #selector(action), for: UIControl.Event.touchUpInside)
-        btn.setTitle("enhenga???", for: UIControl.State.normal)
-        btn.setTitleColor(UIColor.black, for: UIControl.State.normal)
-        
-    }
-    @objc func action(sender: UIButton) {
-        print("手动创建的btn")
-        
-        sender.hxh.topImgBottomText(space: 2);
-        
-        setTextHud(text: "en heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame heng ????????asdasdasd44654as6d4a6s8d46as4d6a5s4d65as4d65asd465s4da654as65d4a65sd465asdinitWithFrameinitWithFrameinitWithFrameinitWithFrame")
-    }
+    
 }
 //MARK: - 基础设置
 extension HXHBaseViewController {
@@ -88,14 +67,13 @@ extension HXHBaseViewController {
             
         }
     }
-    func setupNaviAndStatus() {
+    //MARK: - 基础设置 - 状态栏基础状态
+    private func setupBaseNaviAndStatus() {
         navigationController?.navigationBar.isTranslucent = false
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
         switch naviType {
         case .hideNavi:
             navigationController?.setNavigationBarHidden(false, animated: false)
-
-            
         default:
             navigationController?.setNavigationBarHidden(true, animated: false)
         }
@@ -116,20 +94,20 @@ extension HXHBaseViewController {
             UIApplication.shared.statusBarStyle = .default
         }
         perform(#selector(setNeedsStatusBarAppearanceUpdate))
-
     }
 }
 //MARK: - view层的常用方法
 extension HXHBaseViewController {
+    //MARK: - navi - 构造方法与点击
     /// 自定义naviView
-    func setupCustomNavi(customTitle: NSString, leftBtn: UIButton?, rightBtn: UIButton, titleColor: UIColor, bgColor: UIColor?) {
+    func setupCustomNavi(customTitle: NSString, leftBtn: UIButton?, rightBtn: UIButton?, titleColor: UIColor?, bgColor: UIColor?) {
         //第一步，容器view
         let naviView = UIView()
-        guard let bgColor = bgColor else {
+        if let bgColor = bgColor {
+            naviView.backgroundColor = bgColor
+        } else {
             naviView.backgroundColor = UIColor.white
-            return
         }
-        naviView.backgroundColor = bgColor
         view.addSubview(naviView)
         
         naviView.snp.makeConstraints { (make) in
@@ -139,25 +117,50 @@ extension HXHBaseViewController {
             make.height.equalTo(NaviAndStatusHeight)
         }
         //title
-        customTitleLabel.text = String(customTitle);
-        let labelSize: CGSize  = customTitleLabel.intrinsicContentSize
+        customTitleLabel.text = String(customTitle)
+        customTitleLabel.font = .systemFont(ofSize: 17, weight: UIFont.Weight.semibold)
         naviView.addSubview(customTitleLabel)
-        customTitleLabel.center = CGPoint(x: ScreenWidth/2.0, y: 22.0 + StatusBarHeight)
-        customTitleLabel.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: labelSize)
         customTitleLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.snp.bottom)
             make.centerX.equalTo(view.snp.centerX)
             make.height.equalTo(44)
         }
+        if let titleColor = titleColor {
+            customTitleLabel.textColor = titleColor
+        } else {
+            customTitleLabel.textColor = UIColor.init(hexString: kBlack_333333)
+        }
         //leftBtn
         if let leftBtn = leftBtn {
             naviView.addSubview(leftBtn)
-            leftBtn.frame = CGRect(x: 12.0, y: StatusBarHeight, width: leftBtn.intrinsicContentSize.width, height: 44)
+            leftBtn.snp.makeConstraints { (make) in
+                make.left.equalTo(naviView.snp.left).offset(12)
+                make.bottom.equalTo(naviView.snp.bottom)
+                make.height.equalTo(44)
+            }
         } else {
-           
-            
+            let leftBtn = UIButton(type: UIButton.ButtonType.custom)
+            leftBtn.setImage(UIImage(named: "navi_back_black"), for: UIControl.State.normal)
+            leftBtn.addTarget(self, action: #selector(naviLeftBtnAction(sender:)), for: .touchUpInside)
+            leftBtn.snp.makeConstraints { (make) in
+                make.left.equalTo(naviView.snp.left).offset(12)
+                make.bottom.equalTo(naviView.snp.bottom)
+                make.height.equalTo(44)
+            }
         }
-        
+//        rightBtn
+        if let rightBtn = rightBtn {
+            rightBtn.snp.makeConstraints { (make) in
+                make.right.equalTo(naviView).offset(12)
+                make.bottom.equalTo(naviView)
+                make.height.equalTo(44)
+            }
+        }
+    }
+    @objc func naviLeftBtnAction(sender: UIButton) {
+        if (navigationController?.viewControllers.count ?? 0) > 1 {
+            navigationController?.popViewController(animated: true)
+        }
     }
     /// 常规的显示文字提示，多行
     func setTextHud(text: String) {
