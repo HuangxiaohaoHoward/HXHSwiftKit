@@ -61,6 +61,7 @@ extension HXHBaseViewController {
     func config() {
         automaticallyAdjustsScrollViewInsets = false
         self.modalPresentationStyle = .fullScreen
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
