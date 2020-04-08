@@ -35,7 +35,7 @@ class HXHBaseNavigationViewController: UINavigationController, UIGestureRecogniz
         interactivePopGestureRecognizer?.isEnabled = true
         interactivePopGestureRecognizer?.delegate = self
     }
-   //MARK: - 侧滑相关代理
+    //MARK: - 侧滑相关代理
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if (navigationController.viewControllers.count < 2) {
             interactivePopGestureRecognizer?.isEnabled = false;
@@ -52,10 +52,49 @@ class HXHBaseNavigationViewController: UINavigationController, UIGestureRecogniz
         return true
     }
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if otherGestureRecognizer.delegate?.isKind(of: NSClassFromString("UICollectionView")) {
-            <#code#>
+        if let collectionView = NSClassFromString("UICollectionView"),
+            let tableViewCellContent = NSClassFromString("UITableViewCellContentView"),
+            let tableWrapper = NSClassFromString("UITableViewWrapperView") {
+            if (otherGestureRecognizer.delegate?.isKind(of: collectionView)) ?? false {
+                //对collection判定
+                if let cv = otherGestureRecognizer.delegate as? UICollectionView {
+                    if let flowLayout = cv.collectionViewLayout as? UICollectionViewFlowLayout {
+                        if otherGestureRecognizer.state == .began {
+                            if flowLayout.scrollDirection == UICollectionView.ScrollDirection.horizontal {
+                                if cv.contentOffset.x > 0 {
+                                    return false
+                                } else {
+                                    return true
+                                }
+                            } else {
+                                if cv.contentOffset.x > 0 {
+                                    return true
+                                } else {
+                                    return false
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+            } else if otherGestureRecognizer.delegate?.isKind(of: tableViewCellContent) ?? false {
+                return true
+            } else if otherGestureRecognizer.delegate?.isKind(of: tableWrapper) ?? false {
+                return true
+            }
         }
         return false
+    }
+    
+    
+    
+    //MARK: - status bar
+    override var childForStatusBarStyle: UIViewController? {
+        return topViewController
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        topViewController?.preferredStatusBarStyle ?? UIStatusBarStyle.default
     }
 }
 

@@ -100,6 +100,9 @@ extension HXHBaseViewController {
 //MARK: - view层的常用方法
 extension HXHBaseViewController {
     //MARK: - navi - 构造方法与点击
+    func setupCustomNaviTitle(customTitle: NSString) -> Void {
+        setupCustomNavi(customTitle: customTitle, leftBtn: nil, rightBtn: nil, titleColor: nil, bgColor: nil)
+    }
     /// 自定义naviView
     func setupCustomNavi(customTitle: NSString, leftBtn: UIButton?, rightBtn: UIButton?, titleColor: UIColor?, bgColor: UIColor?) {
         //第一步，容器view
