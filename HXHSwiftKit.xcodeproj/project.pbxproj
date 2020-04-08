@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		51116ABA2426F5046CE09509 /* Pods_HXHSwiftKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6D32C30E8DA0596DD20C04 /* Pods_HXHSwiftKit.framework */; };
+		5822986C243D81A800753D97 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5822986B243D81A800753D97 /* NetworkService.swift */; };
 		586C5125243C4E6900F93C91 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586C5124243C4E6900F93C91 /* ColorManager.swift */; };
 		586C5127243C539A00F93C91 /* HXHBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586C5126243C539A00F93C91 /* HXHBaseNavigationViewController.swift */; };
 		58C4405D24358AD000AF5649 /* HXHBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C4405B24358AD000AF5649 /* HXHBaseViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		4D6D32C30E8DA0596DD20C04 /* Pods_HXHSwiftKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HXHSwiftKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5822986B243D81A800753D97 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		586C5124243C4E6900F93C91 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		586C5126243C539A00F93C91 /* HXHBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HXHBaseNavigationViewController.swift; sourceTree = "<group>"; };
 		58C4405B24358AD000AF5649 /* HXHBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HXHBaseViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		58C4405824357CEE00AF5649 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5822986B243D81A800753D97 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5822986C243D81A800753D97 /* NetworkService.swift in Sources */,
 				58C440622435D98600AF5649 /* HXHNameSpace.swift in Sources */,
 				586C5127243C539A00F93C91 /* HXHBaseNavigationViewController.swift in Sources */,
 				58C4406824370EF700AF5649 /* FrameManager.swift in Sources */,
