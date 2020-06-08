@@ -7,9 +7,9 @@
 //
 
 import UIKit
-class NetworkService: NSObject {
-
-}
+//class NetworkService: NSObject {
+//
+//}
 enum NetworkService {
     case login
     case goods
